@@ -1,0 +1,38 @@
+<div class="row">
+    <div class="col-sm-8">
+        <button type="button" class="btn btn-primary mb-2" routerLink="add"><i class ="fa fa-plus-square" aria-hidden="true"></i></button>
+    </div>   <!--This is add button, Clicking on it will lead to add component, where the logic is written-->
+    <div class="col-sm-4">
+        <input type="text" name="search" id="" class="form-control" placeholder="Searching Someone..?" [(ngModel)]="term">
+    </div>  <!--This is a search box. We can search anyone-->
+</div>
+<table class="table table-light">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Post</th>
+            <th>Salary</th>
+            <th>Address</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let e of empData">
+        <!--Doing multiple things here, for loop to obtain all data, doing pagination and using filter for search bar-->
+            <td>{{ e.id }}</td>
+            <td>{{ e.name }}</td>
+            <td>{{ e.post }}</td>
+            <td>{{ e.salary }}</td>
+            <td>{{ e.address }}</td>
+            <td>
+                <button type="button" class="btn btn-outline-info" [routerLink]="['../edit',e.id]"><i class ="fa fa-pencil-square-o" aria-hidden="true">Edt</i></button> <!--Tis will take us to edit component, where edit logic is written-->
+            
+                <button type="button" class="btn btn-outline-danger" (click)="delete(e.id)"><i class="fa fa-trash-o" aria-hidden="true">delete</i></button> <!--Calling delete function to remove the record-->
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div class="text-right">
+    <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls>   for pagination -->
+</div>
