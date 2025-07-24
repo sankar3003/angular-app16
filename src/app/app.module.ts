@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ChildComponent } from './child/child.component';
@@ -15,6 +15,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { AddComponent } from './add/add.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EditComponent } from './edit/edit.component';
+import { CounterComponent } from './counter/counter.component';
+import { provideState, provideStore, StoreModule } from '@ngrx/store';
+import { counterReducer } from './states/counter/counter.reducer';
+import { ViewChildComponent } from './view-child/view-child.component';
+import { CoutingComponent } from './view-child/couting/couting.component';
+import { Couting2Component } from './view-child/couting2/couting2.component';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
@@ -29,15 +36,25 @@ import { EditComponent } from './edit/edit.component';
     AddComponent,
     DashboardComponent,
     EditComponent,
-  
+    CounterComponent,
+    ViewChildComponent,
+  CoutingComponent,
+  Couting2Component
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    StoreModule.forRoot({}, {})
   ],
-  providers: [AuthService],
+  providers: [AuthService,
+    provideStore(),
+    provideState({name: 'counter', reducer:counterReducer})
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

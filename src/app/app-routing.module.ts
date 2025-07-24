@@ -7,8 +7,7 @@ import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
   {path:'dashboard',component: DashboardComponent},    // By default show this
- 
-  {path:'add',component: AddComponent},
+   {path:'add',component: AddComponent},
   {path:'edit/:id',component: EditComponent},
   // { path: 'list',  
   //   component: PostListComponentComponent ,
@@ -23,11 +22,7 @@ const routes: Routes = [
   //     path:'login',
   //     component: LoginComponent
   //   },
-    {
-     path:"",
-      redirectTo:'/dashboard',
-      pathMatch:'full'
-    }
+ 
 
 ]
 ;
